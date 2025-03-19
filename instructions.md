@@ -41,5 +41,3 @@ This task is to find the maximum possible profit. You'll need to understand how 
 - Amount bridged of ZERC
 - Amount out of USDC at the other end
 - Optimal Profit in USD(C)
-
-(Version: 25th Dec 2024)
