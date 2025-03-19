@@ -1,3 +1,6 @@
+from typing import Literal
+
+
 ETH_LP_ADDRESS = "0x29eba991f9d9e71c6bbd69cb71c074193fd877fd"
 ETH_USDC_ADDRESS = "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48"
 ETH_ZERC_ADDRESS = "0xf8428A5a99cb452Ea50B6Ea70b052DaA3dF4934F"
@@ -10,3 +13,6 @@ POL_ROUTER_ADDRESS = "0xa5E0829CaCEd8fFDD4De3c43696c57F7D7A678ff"
 
 ETH_RPC = "https://eth.llamarpc.com"
 POL_RPC = "https://polygon.llamarpc.com"
+
+
+ChainType = Literal["eth", "pol"]
