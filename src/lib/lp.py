@@ -31,16 +31,16 @@ async def get_pool_reserves(w3, pool_address: str, chain: ChainType) -> PoolRese
     pool_contract = w3.eth.contract(address=pool_address, abi=UNIV2_LP_ABI)
 
     # Get token addresses for this pool
-    token0_address = pool_contract.functions.token0().call().lower()
-    token1_address = pool_contract.functions.token1().call().lower()
+    token0_address = pool_contract.functions.token0().call()
+    token1_address = pool_contract.functions.token1().call()
 
     # Determine USDC and ZERC addresses based on the chain
     if chain == "eth":
-        usdc_address = ETH_USDC_ADDRESS.lower()
-        zerc_address = ETH_ZERC_ADDRESS.lower()
+        usdc_address = ETH_USDC_ADDRESS
+        zerc_address = ETH_ZERC_ADDRESS
     elif chain == "pol":
-        usdc_address = POL_USDC_ADDRESS.lower()
-        zerc_address = POL_ZERC_ADDRESS.lower()
+        usdc_address = POL_USDC_ADDRESS
+        zerc_address = POL_ZERC_ADDRESS
     else:
         raise ValueError(f"Unsupported chain: {chain}")
 
