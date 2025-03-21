@@ -172,7 +172,6 @@ class ArbitrageOutput(NamedTuple):
     total_zerc_bridged: float
     total_usdc_out: float
     total_profit: float
-    round_count: int
 
 
 async def find_optimal_arbitrage() -> ArbitrageOutput:
@@ -183,8 +182,7 @@ async def find_optimal_arbitrage() -> ArbitrageOutput:
         multi_result: MultiRoundResult = simulate_multi_round_arbitrage(
             eth_reserves.formatted.usdc_reserves,
             eth_reserves.formatted.zerc_reserves,
-            # pol_reserves.formatted.usdc_reserves,
-            100000,
+            pol_reserves.formatted.usdc_reserves,
             pol_reserves.formatted.zerc_reserves,
             max_rounds=10,
             min_price_diff_pct=0.1,
@@ -199,19 +197,18 @@ async def find_optimal_arbitrage() -> ArbitrageOutput:
         total_zerc_bridged: float = 0
         total_usdc_out: float = 0
         total_profit: float = 0
-        
 
-
-        for round in multi_result.rounds:
-
-            total_usdc_in += round
+        for round in multi_result["rounds"]:
+            total_usdc_in += round["usdc_in"]
+            total_zerc_bridged += round["zerc_bridged"]
+            total_usdc_out += round["usdc_out"]
+            total_profit += round["profit"]
 
         return ArbitrageOutput(
-            total_usdc_in=first_round["usdc_in"],
-            total_zerc_bridged=first_round["zerc_bridged"],
-            total_usdc_out=first_round["usdc_out"],
-            total_profit=multi_result["total_profit"],
-            round_count=multi_result["round_count"],
+            total_usdc_in,
+            total_zerc_bridged,
+            total_usdc_out,
+            total_profit,
         )
 
     except Exception:
