@@ -1,6 +1,6 @@
 # Algo Trading – Home Assignment
 
-Submit to david.ryan@dcentralab.com within 48 hours of receiving the assignment
+Submit to redacted within 48 hours of receiving the assignment
 
 ## Question:
 
